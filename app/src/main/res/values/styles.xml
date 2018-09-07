@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- 修改系统itemDivider 的样式-->
+        <item name="android:divider">@drawable/ic_list_divider</item>
+        <item name="android:dividerHeight">0.5dp</item>
+        <item name="android:listDivider">@drawable/ic_list_divider</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
