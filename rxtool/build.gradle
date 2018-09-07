@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '27.0.3'
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:25.3.1'
+    testImplementation 'junit:junit:4.12'
+    //Zxing核心包
+    implementation 'com.google.zxing:core:3.3.0'
+    //沉浸式
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    //recyclerview包
+    implementation 'com.android.support:recyclerview-v7:25.3.1'
+    implementation files('libs/zip4j_1.3.2.jar')
+}

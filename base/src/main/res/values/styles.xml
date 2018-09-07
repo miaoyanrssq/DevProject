@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--swipeBack属性-->
+    <style name="SwipeBackLayout">
+        <item name="edge_size">15dip</item>
+        <item name="shadow_left">@drawable/module_core_shadow_left</item>
+        <item name="shadow_right">@drawable/module_core_shadow_right</item>
+        <item name="shadow_bottom">@drawable/module_core_shadow_bottom</item>
+    </style>
+
+    <style name="ToolbarTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/toolbar_normal_height</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/ts_17sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_marginLeft">@dimen/toolbar_normal_height</item>
+        <item name="android:layout_marginRight">@dimen/toolbar_normal_height</item>
+    </style>
+</resources>

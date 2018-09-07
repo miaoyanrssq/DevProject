@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#d12324</color>
+    <color name="colorPrimary_night">#520d0d</color>
+    <color name="colorPrimaryDark">#d12324</color>
+    <color name="colorPrimaryDark_night">#520d0d</color>
+
+    <color name="tc_484848">#484848</color>
+    <color name="tc_484848_night">#7a7b7d</color>
+    <color name="tc_999999">#999999</color>
+    <color name="tc_999999_night">#7a7b7d</color>
+    <color name="tc_ffffff">#ffffff</color>
+    <color name="tc_ffffff_night">#7a7b7d</color>
+    <color name="tc_a5a5a5">#a5a5a5</color>
+    <color name="tc_a5a5a5_night">#7a7b7d</color>
+    <color name="tc_5c5c5c">#5c5c5c</color>
+    <color name="tc_f44b50">#f44b50</color>
+    <color name="tc_f44b50_night">#8e3636</color>
+    <color name="tc_878686">#878686</color>
+    <color name="tc_878686_night">#5c5c5c</color>
+    <color name="tc_4682c5">#4682c5</color>
+    <color name="tc_4682c5_night">#315277</color>
+
+    <color name="bc_ffffff">#ffffff</color>
+    <color name="bc_ffffff_night">#202124</color>
+    <color name="bc_f8f8f8">#f8f8f8</color>
+    <color name="bc_f8f8f8_night">#202124</color>
+    <color name="bc_f5f5f5">#f5f5f5</color>
+    <color name="bc_f5f5f5_night">#191919</color>
+
+    <color name="dc_d8d8d8">#d8d8d8</color>
+    <color name="dc_d8d8d8_night">#5c5c5c</color>
+
+    <color name="dc_cecece">#cecece</color>
+    <color name="dc_cecece_night">#7a7b7d</color>
+    <color name="dc_dddddd">#dddddd</color>
+    <color name="dc_dddddd_night">#343434</color>
+
+    <color name="statusBarColor">#33000000</color>
+    <color name="status_bar_color_night">#191919</color>
+
+    <color name="module_core_image_load_text_color">#999999</color>
+    <color name="module_core_image_load_text_color_night">#434343</color>
+
+    <color name="continuous_text_color">#ffffff</color>
+    <color name="continuous_text_color_night">#cccbcb</color>
+    <!--日夜间模式 color-->
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_3b424c">#3b424c</color>
+    <color name="color_484848">#484848</color>
+    <color name="color_7a7b7d">#7a7b7d</color>
+    <color name="color_202124_night">#202124</color>
+    <color name="color_33000000">#33000000</color>
+
+    <color name="color_fdc247">#fdc247</color>
+    <color name="color_e9e9e9">#e9e9e9</color>
+    <color name="color_7f000000_night">#7f000000</color>
+
+    <color name="color_zhe">#eeecec</color>
+    <color name="color_zhe_night">#3f4042</color>
+
+    <color name="color_zhe_flash">#cacaca</color>
+    <color name="color_zhe_flash_night">#595a5c</color>
+
+    <color name="color_5c5c5c">#5c5c5c</color>
+    <color name="tc_000000">#000000</color>
+    <color name="tc_000000_night">#7a7b7d</color>
+    <color name="tc_808080">#808080</color>
+    <color name="bc_878686">#878686</color>
+    <color name="bc_f44b50">#f44b50</color>
+    <color name="bc_7f000000">#7f000000</color>
+    <color name="tc_7a7b7d">#7a7b7d</color>
+    <color name="bc_8e3636">#8e3636</color>
+    <color name="dc_979797">#979797</color>
+
+
+</resources>

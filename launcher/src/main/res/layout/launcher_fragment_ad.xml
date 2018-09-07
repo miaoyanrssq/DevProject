@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bc_ffffff"
+                >
+
+    <ImageView
+        android:id="@+id/splash_ad_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/splash_circle_progress"
+        android:layout_marginBottom="25dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/pic"
+        />
+
+
+
+
+
+        <cn.zgy.launcher.widget.CircleProgress
+            android:id="@+id/splash_circle_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="25dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="#0066FF"
+            android:backgroundTintMode="add"
+            app:finished_color="@color/colorPrimary"
+            app:finished_stroke_width="3dp"
+            app:show_text="true"
+            app:text="跳过"
+            app:text_color="@android:color/black"
+            app:text_padding="7dp"
+            app:text_size="12sp"
+            app:unfinished_color="@color/primary_material_light"
+            app:unfinished_stroke_width="3dp" />
+
+</RelativeLayout>

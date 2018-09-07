@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">nav</string>
+
+    <!--普通页面 scheme 用 http-->
+    <string name="data_scheme">http</string>
+    <string name="data_scheme_https">https</string>
+
+    <string name="data_host">www.devproject</string>
+</resources>

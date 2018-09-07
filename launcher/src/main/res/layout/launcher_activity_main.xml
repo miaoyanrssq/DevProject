@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.aliya.view.fitsys.FitWindowsLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                              xmlns:app="http://schemas.android.com/apk/res-auto"
+                                              xmlns:tools="http://schemas.android.com/tools"
+                                              android:id="@+id/container"
+                                              android:layout_width="match_parent"
+                                              android:layout_height="match_parent"
+                                              android:background="@drawable/activity_default_background"
+                                              android:fitsSystemWindows="true"
+                                              android:orientation="vertical"
+                                              app:fitType="bottom"
+                                              >
+
+    <include layout="@layout/launcher_layout_main_bar"/>
+
+    <com.aliya.view.fitsys.FitWindowsLayout
+        android:id="@+id/launcher_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#ffffff"/>
+
+
+    <RadioGroup
+        android:id="@+id/launcher_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#f5f5f5"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <RadioButton
+            android:id="@+id/launcher_home"
+            style="@style/launcher_bottom_text"
+            android:drawableTop="@drawable/home_selector"
+            android:tag="home"
+            android:text="@string/title_home"/>
+
+        <RadioButton
+            android:id="@+id/launcher_local"
+            style="@style/launcher_bottom_text"
+            android:drawableTop="@drawable/local_selector"
+            android:tag="local"
+            android:text="@string/title_local"/>
+
+        <RadioButton
+            android:id="@+id/launcher_video"
+            style="@style/launcher_bottom_text"
+            android:drawableTop="@drawable/video_selector"
+            android:tag="video"
+            android:text="@string/title_video"/>
+
+        <RadioButton
+            android:id="@+id/launcher_subscription"
+            style="@style/launcher_bottom_text"
+            android:drawableTop="@drawable/subscription_selector"
+            android:tag="subscription"
+            android:text="@string/title_subscription"/>
+
+        <RadioButton
+            android:id="@+id/launcher_discovery"
+            style="@style/launcher_bottom_text"
+            android:drawableTop="@drawable/discovery_selector"
+            android:tag="discovery"
+            android:text="@string/title_discovery"/>
+
+    </RadioGroup>
+
+</com.aliya.view.fitsys.FitWindowsLinearLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common_header_height"
+    android:background="@color/colorPrimary"
+    android:gravity="bottom"
+    >
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/service_title"
+        android:layout_width="@dimen/toolbar_normal_height"
+        android:layout_height="@dimen/toolbar_normal_height"
+        android:gravity="center"
+        android:layout_marginLeft="39dp"
+        android:text="服务"
+        android:textColor="#ffffff"
+        android:textSize="14dp"
+        android:layout_alignParentBottom="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/toolbar_normal_height"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="HOME"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/ts_17sp"
+        android:layout_alignParentBottom="true"
+        />
+
+    <View
+        android:id="@+id/dot_mine"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="31dp"
+        android:layout_marginRight="10dp"
+        android:background="#ffffff"
+        android:layout_alignParentBottom="true"
+        />
+
+    <FrameLayout
+        android:id="@+id/ll_launcher_user"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="2dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <ImageView
+            android:id="@+id/launcher_user_center_view"
+            android:layout_gravity="center"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/launcher_main_bar_mine"
+            app:iv_maskColor="@color/tc_ffffff_night" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/launcher_search_view"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="42dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/launcher_main_bar_search"
+            app:iv_maskColor="@color/tc_ffffff_night" />
+
+
+    </FrameLayout>
+
+
+
+
+
+</RelativeLayout>

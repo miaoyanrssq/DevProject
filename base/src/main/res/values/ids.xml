@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="id_back" type="id" />
+    <item name="tag_ui_mode" type="id" />
+    <item name="tag_index" type="id" />
+    <item name="tag_fragment" type="id" />
+    <item name="tag_holder" type="id" />
+    <item name="tag_data" type="id" />
+</resources>

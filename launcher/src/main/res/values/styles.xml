@@ -1,0 +1,22 @@
+<resources>
+
+
+    <style name="LauncherTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <style name="LauncherThemeNight" parent="Theme.AppCompat.Light.DarkActionBar">
+    </style>
+
+
+    <style name="launcher_bottom_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#484848</item>
+        <item name="android:textSize">11dp</item>
+        <item name="android:button">@null</item>
+    </style>
+
+</resources>

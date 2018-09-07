@@ -1,0 +1,4 @@
+include ':app', ':launcher', ':base', ':nav', ':banner', ':multilist',
+        'viselog',
+        'rxtool',
+        'rxeasyhttp', ':multitype','refresh-layout'
