@@ -9,6 +9,7 @@ import cn.zgy.launcher.fragment.AdFragment;
 import cn.zgy.launcher.fragment.TestFragment;
 import cn.zgy.multilist.NewsFragment;
 import cn.zgy.multilist.OneToManyFragment;
+import cn.zgy.news.HomeFragment;
 
 
 /**
@@ -38,7 +39,7 @@ public class TabManager {
         Fragment fragment = null;
         switch (tag) {
             case "home":
-                fragment = new NewsFragment();
+                fragment = new HomeFragment();
                 break;
             case "local":
                 fragment=new OneToManyFragment();

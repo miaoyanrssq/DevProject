@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -34,7 +35,7 @@ import cn.zgy.multitype.MultiTypeAdapter;
 
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 /**
-* 模拟网络拉取数据，one-to-many一对多的关系，根据数据中type来制定响应的binder
+* 模拟网络拉取数据，one-to-many一对多的关系，根据数据中type来制定相应的binder
 * @author zhengy
 * create at 2018/9/7 下午4:02
 **/
@@ -43,6 +44,7 @@ public class OneToManyFragment extends BaseFragment implements OnRefreshListener
 
     private static final String JSONDATA = "[{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165300,\"type\":\"ImageItem\"},{\"imageResId\":2131165298,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165300,\"type\":\"ImageItem\"},{\"imageResId\":2131165298,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165300,\"type\":\"ImageItem\"},{\"imageResId\":2131165298,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165300,\"type\":\"ImageItem\"},{\"imageResId\":2131165298,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165300,\"type\":\"ImageItem\"},{\"imageResId\":2131165298,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165300,\"type\":\"ImageItem\"},{\"imageResId\":2131165298,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165300,\"type\":\"ImageItem\"},{\"imageResId\":2131165298,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165300,\"type\":\"ImageItem\"},{\"imageResId\":2131165298,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165300,\"type\":\"ImageItem\"},{\"imageResId\":2131165298,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165300,\"type\":\"ImageItem\"},{\"imageResId\":2131165298,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"}]\n";
 
+    private View mCacheView;
     private View mEmptyLayout;
     private RecyclerView mRecyclerView;
     private RefreshLayout mRefreshLayout;
@@ -53,6 +55,13 @@ public class OneToManyFragment extends BaseFragment implements OnRefreshListener
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (mCacheView != null) {
+            ViewParent parent = mCacheView.getParent();
+            if (parent instanceof ViewGroup) {
+                ((ViewGroup) parent).removeView(mCacheView);
+            }
+            return mCacheView;
+        }
         View rootView = inflater.inflate(R.layout.fragment_news, container, false);
         return rootView;
     }
@@ -61,9 +70,11 @@ public class OneToManyFragment extends BaseFragment implements OnRefreshListener
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initView();
-
-        mRefreshLayout.autoRefresh();
+        if(mCacheView == null) {
+            mCacheView = view;
+            initView();
+            mRefreshLayout.autoRefresh();
+        }
 
     }
 

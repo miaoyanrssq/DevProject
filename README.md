@@ -18,7 +18,7 @@
 BaseActivity  
 BaseFragment
 
-##BannerView 适配guide引导页和banner
+## BannerView 适配guide引导页和banner
 [BannerView](banner/README.md)
 
 

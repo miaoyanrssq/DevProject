@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -40,6 +41,7 @@ import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 **/
 public class NewsFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener{
 
+    private View mCacheView;
     private View mEmptyLayout;
     private RecyclerView mRecyclerView;
     private RefreshLayout mRefreshLayout;
@@ -50,6 +52,18 @@ public class NewsFragment extends BaseFragment implements OnRefreshListener, OnL
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        /**
+        * mCacheView缓存策略，对fragment自身进行缓存，配合viewpager的本地缓存实现tablayout中页面的缓存功能{@link PagerCache}
+        * @author zhengy
+        * create at 2018/9/10 上午11:11
+        **/
+        if (mCacheView != null) {
+            ViewParent parent = mCacheView.getParent();
+            if (parent instanceof ViewGroup) {
+                ((ViewGroup) parent).removeView(mCacheView);
+            }
+            return mCacheView;
+        }
         View rootView = inflater.inflate(R.layout.fragment_news, container, false);
         return rootView;
     }
@@ -58,8 +72,11 @@ public class NewsFragment extends BaseFragment implements OnRefreshListener, OnL
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initView();
-        mRefreshLayout.autoRefresh();
+        if(mCacheView == null) {
+            mCacheView = view;
+            initView();
+            mRefreshLayout.autoRefresh();
+        }
 
     }
 
@@ -126,8 +143,6 @@ public class NewsFragment extends BaseFragment implements OnRefreshListener, OnL
             items.add(richItem);
         }
 
-        String text = new Gson().toJson(items);
-        Log.e("TGA", text);
         adapter.setItems(items);
         adapter.notifyDataSetChanged();
     }

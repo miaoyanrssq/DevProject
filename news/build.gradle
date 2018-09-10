@@ -7,7 +7,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 17
+        minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -33,27 +33,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    //base
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:design:27.0.2'
+    //自定义view封装
+    implementation project(':autoview')
+
     implementation project(':base')
-    //nav
-    implementation project(':nav')
-    //工具类
-    implementation project(':rxtool')
-    //日志系统
-    implementation project(':viselog')
-    //banner
-    implementation project(':banner')
-    //list封装
+
     implementation project(':multilist')
-    //news模块
-    implementation project(':news')
-
-
 
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'com.aliya:fitwindow:1.0.0'
-
 }

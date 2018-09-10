@@ -41,7 +41,7 @@ public class AdFragment  extends BaseFragment implements  CircleProgress.OnCircl
 
     @Override
     public void onClick(View view) {
-        toHome();
+        getActivity().finish();
     }
 
     private void toHome(){
