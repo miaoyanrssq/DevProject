@@ -54,6 +54,8 @@ public class HomeFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         initChannels();
         initViewPager(channels);
+        mOnPageChangeListener = new OnPageChangeListener();
+        mViewPager.setOnPageChangeListener(mOnPageChangeListener);
     }
 
     private void initChannels() {
@@ -100,12 +102,12 @@ public class HomeFragment extends BaseFragment {
                 mPagerAdapter.setTabLayout(mTabLayout);
                 if (mPosition < mPagerAdapter.getCount()) {
                     mViewPager.setCurrentItem(mPosition);
-                    mOnPageChangeListener.onPageSelected(mPosition);
+//                    mOnPageChangeListener.onPageSelected(mPosition);
                 }
                 } else {
                     mPagerAdapter.updateDataSet(channels);
                     if (mViewPager.getCurrentItem() < mPagerAdapter.getCount()) {
-                        mOnPageChangeListener.onPageSelected(mViewPager.getCurrentItem());
+//                        mOnPageChangeListener.onPageSelected(mViewPager.getCurrentItem());
                     }
                 }
             }

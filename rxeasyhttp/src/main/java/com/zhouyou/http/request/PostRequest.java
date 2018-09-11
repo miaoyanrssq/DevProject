@@ -25,6 +25,7 @@ import com.zhouyou.http.callback.CallClazzProxy;
 import com.zhouyou.http.func.ApiResultFunc;
 import com.zhouyou.http.func.CacheResultFunc;
 import com.zhouyou.http.func.RetryExceptionFunc;
+import com.zhouyou.http.loadview.ILoad;
 import com.zhouyou.http.model.ApiResult;
 import com.zhouyou.http.subsciber.CallBackSubsciber;
 import com.zhouyou.http.utils.RxUtil;
@@ -75,11 +76,17 @@ public class PostRequest extends BaseBodyRequest<PostRequest> {
     }
 
     public <T> Disposable execute(CallBack<T> callBack) {
-        return execute(new CallBackProxy<ApiResult<T>, T>(callBack) {
-        });
+//        return execute(new CallBackProxy<ApiResult<T>, T>(callBack) {
+//        });
+        return execute(callBack, null);
     }
 
-    public <T> Disposable execute(CallBackProxy<? extends ApiResult<T>, T> proxy) {
+    public <T> Disposable execute(CallBack<T> callBack, ILoad iLoad) {
+        return execute(new CallBackProxy<ApiResult<T>, T>(callBack) {
+        }, iLoad);
+    }
+
+    public <T> Disposable execute(CallBackProxy<? extends ApiResult<T>, T> proxy , ILoad iLoad) {
         Observable<CacheResult<T>> observable = build().toObservable(generateRequest(), proxy);
         if (CacheResult.class != proxy.getCallBack().getRawType()) {
             return observable.compose(new ObservableTransformer<CacheResult<T>, T>() {
@@ -87,9 +94,9 @@ public class PostRequest extends BaseBodyRequest<PostRequest> {
                 public ObservableSource<T> apply(@NonNull Observable<CacheResult<T>> upstream) {
                     return upstream.map(new CacheResultFunc<T>());
                 }
-            }).subscribeWith(new CallBackSubsciber<T>(context, proxy.getCallBack()));
+            }).subscribeWith(new CallBackSubsciber<T>(context, proxy.getCallBack(), this, iLoad));
         } else {
-            return observable.subscribeWith(new CallBackSubsciber<CacheResult<T>>(context, proxy.getCallBack()));
+            return observable.subscribeWith(new CallBackSubsciber<CacheResult<T>>(context, proxy.getCallBack(), this, iLoad));
         }
     }
 

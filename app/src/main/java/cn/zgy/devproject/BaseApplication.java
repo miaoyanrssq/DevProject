@@ -23,7 +23,7 @@ public class BaseApplication extends MultiDexApplication {
 
 
 
-    String url = "";
+    String url = "https://mmapi.tmuyun.com/";
     @Override
     public void onCreate() {
         super.onCreate();

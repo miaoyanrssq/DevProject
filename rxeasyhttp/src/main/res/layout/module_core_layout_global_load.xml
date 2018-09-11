@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <ViewStub
+        android:id="@+id/view_stub_failed"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout="@layout/module_core_layout_global_load_failed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ViewStub
+        android:id="@+id/view_stub_network_error"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout="@layout/module_core_layout_global_network_error"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.zhouyou.http.loadview.LoadAnim
+        android:id="@+id/layout_loading"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/module_core_ic_load_zhe"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.382" />
+
+    <FrameLayout
+        android:id="@+id/fit_sys_helper"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
+</android.support.constraint.ConstraintLayout>

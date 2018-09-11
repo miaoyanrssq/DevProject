@@ -21,6 +21,10 @@ import android.content.Context;
 import com.zhouyou.http.callback.CallBack;
 import com.zhouyou.http.callback.ProgressDialogCallBack;
 import com.zhouyou.http.exception.ApiException;
+import com.zhouyou.http.loadview.ILoad;
+import com.zhouyou.http.loadview.LoadViewHolder;
+import com.zhouyou.http.request.BaseRequest;
+import com.zhouyou.http.request.PostRequest;
 
 import io.reactivex.annotations.NonNull;
 
@@ -34,7 +38,9 @@ import io.reactivex.annotations.NonNull;
  */
 public class CallBackSubsciber<T> extends BaseSubscriber<T> {
     public CallBack<T> mCallBack;
-    
+    public PostRequest postRequest;
+
+    public LoadViewHolder loadViewHolder;
 
     public CallBackSubsciber(Context context, CallBack<T> callBack) {
         super(context);
@@ -44,6 +50,16 @@ public class CallBackSubsciber<T> extends BaseSubscriber<T> {
         }
     }
 
+    public CallBackSubsciber(Context context, CallBack<T> callBack, PostRequest postRequest, ILoad load) {
+        super(context);
+        mCallBack = callBack;
+        this.postRequest = postRequest;
+        this.loadViewHolder = (LoadViewHolder) load;
+        loadViewHolder.setSubscriber(this);
+        if (callBack instanceof ProgressDialogCallBack) {
+            ((ProgressDialogCallBack) callBack).subscription(this);
+        }
+    }
 
     @Override
     protected void onStart() {
@@ -57,6 +73,9 @@ public class CallBackSubsciber<T> extends BaseSubscriber<T> {
     public void onError(ApiException e) {
         if (mCallBack != null) {
             mCallBack.onError(e);
+            if(loadViewHolder != null) {
+                loadViewHolder.showFailed(e.getCode());
+            }
         }
     }
 
@@ -65,6 +84,9 @@ public class CallBackSubsciber<T> extends BaseSubscriber<T> {
         super.onNext(t);
         if (mCallBack != null) {
             mCallBack.onSuccess(t);
+            if(loadViewHolder != null) {
+                loadViewHolder.finishLoad();
+            }
         }
     }
 
@@ -73,6 +95,15 @@ public class CallBackSubsciber<T> extends BaseSubscriber<T> {
         super.onComplete();
         if (mCallBack != null) {
             mCallBack.onCompleted();
+            if(loadViewHolder != null) {
+                loadViewHolder.finishLoad();
+            }
+        }
+    }
+
+    public void retry(){
+        if(postRequest != null) {
+            postRequest.execute(mCallBack, loadViewHolder);
         }
     }
 }

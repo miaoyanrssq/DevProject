@@ -15,9 +15,11 @@ import android.view.ViewParent;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
 
 
 import java.util.ArrayList;
@@ -35,16 +37,17 @@ import cn.zgy.multitype.MultiTypeAdapter;
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 
 /**
-* 刷新控件 + MultiType基本上使用
-* @author zhengy
-* create at 2018/9/7 下午3:06
-**/
-public class NewsFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener{
+ * 刷新控件 + MultiType基本上使用
+ *
+ * @author zhengy
+ * create at 2018/9/7 下午3:06
+ **/
+public class NewsFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener {
 
     private View mCacheView;
     private View mEmptyLayout;
     private RecyclerView mRecyclerView;
-    private RefreshLayout mRefreshLayout;
+    private SmartRefreshLayout mRefreshLayout;
 
     private MultiTypeAdapter adapter;
     private List<Object> items = new ArrayList<>();
@@ -53,10 +56,10 @@ public class NewsFragment extends BaseFragment implements OnRefreshListener, OnL
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         /**
-        * mCacheView缓存策略，对fragment自身进行缓存，配合viewpager的本地缓存实现tablayout中页面的缓存功能{@link PagerCache}
-        * @author zhengy
-        * create at 2018/9/10 上午11:11
-        **/
+         * mCacheView缓存策略，对fragment自身进行缓存，配合viewpager的本地缓存实现tablayout中页面的缓存功能{@link PagerCache}
+         * @author zhengy
+         * create at 2018/9/10 上午11:11
+         **/
         if (mCacheView != null) {
             ViewParent parent = mCacheView.getParent();
             if (parent instanceof ViewGroup) {
@@ -72,10 +75,12 @@ public class NewsFragment extends BaseFragment implements OnRefreshListener, OnL
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if(mCacheView == null) {
+        if (mCacheView == null) {
             mCacheView = view;
             initView();
             mRefreshLayout.autoRefresh();
+
+
         }
 
     }
@@ -87,7 +92,7 @@ public class NewsFragment extends BaseFragment implements OnRefreshListener, OnL
         mRefreshLayout.setOnLoadMoreListener(this);
         mEmptyLayout = findViewById(R.id.empty);
         TextView text = mEmptyLayout.findViewById(R.id.empty_text);
-        ((View)text.getParent()).setOnClickListener(new View.OnClickListener() {
+        ((View) text.getParent()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 doRefresh(0);
@@ -108,7 +113,6 @@ public class NewsFragment extends BaseFragment implements OnRefreshListener, OnL
         mRecyclerView.setAdapter(adapter);
 
 
-
     }
 
 
@@ -123,28 +127,34 @@ public class NewsFragment extends BaseFragment implements OnRefreshListener, OnL
         doRefresh(1);
     }
 
-    protected void doRefresh(int type){
-
-        if(type == 0) {
-            mRefreshLayout.autoRefresh();
+    protected void doRefresh(int type) {
+        if (type == 0) {
             mRefreshLayout.finishRefresh(2000);
             items.clear();
-        }else{
-            mRefreshLayout.autoLoadMore();
+        } else {
             mRefreshLayout.finishLoadMore(2000);
         }
         TextItem textItem = new TextItem("纯文字列表条目");
         ImageItem imageItem = new ImageItem(R.drawable.image_practice_repast_1);
+        ImageItem imageItem2 = new ImageItem(R.drawable.image_movie_header_48621499931969370);
         RichItem richItem = new RichItem("左图右文列表条目", R.drawable.image_avatar_1);
 
         for (int i = 0; i < 10; i++) {
             items.add(textItem);
-            items.add(imageItem);
+            if(i % 2 == 0){
+                items.add(imageItem);
+            }else{
+                items.add(imageItem2);
+            }
+
             items.add(richItem);
         }
+
+        Log.e("Tga", new Gson().toJson(items));
 
         adapter.setItems(items);
         adapter.notifyDataSetChanged();
     }
+
 
 }

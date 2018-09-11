@@ -48,6 +48,8 @@ dependencies {
     //news模块
     implementation project(':news')
 
+    implementation project(':rxeasyhttp')
+
 
 
     implementation 'com.jakewharton:butterknife:8.8.1'

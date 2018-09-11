@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 
 import cn.zgy.launcher.fragment.AdFragment;
 import cn.zgy.launcher.fragment.TestFragment;
+import cn.zgy.multilist.Loading_NewsFragment;
 import cn.zgy.multilist.NewsFragment;
 import cn.zgy.multilist.OneToManyFragment;
 import cn.zgy.news.HomeFragment;
@@ -45,7 +46,7 @@ public class TabManager {
                 fragment=new OneToManyFragment();
                 break;
             case "video":
-                fragment=new TestFragment();
+                fragment=new Loading_NewsFragment();
                 break;
             case "subscription":
                 fragment = new TestFragment();

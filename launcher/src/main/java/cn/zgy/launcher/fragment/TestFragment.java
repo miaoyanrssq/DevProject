@@ -6,12 +6,17 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.zhouyou.http.loadview.LoadViewHolder;
 
 import cn.zgy.base.BaseFragment;
 import cn.zgy.launcher.R;
 
 public class TestFragment extends BaseFragment {
 
+
+    TextView splash;
 
     public TestFragment() {
     }
@@ -26,5 +31,7 @@ public class TestFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        splash = findViewById(R.id.splash);
+//        new LoadViewHolder(splash, null);
     }
 }
