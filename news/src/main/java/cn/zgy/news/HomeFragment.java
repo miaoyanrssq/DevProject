@@ -86,6 +86,8 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R2.id.iv_plus)
     public void onViewClicked() {
+
+        toPath("/ChannelManagerActivity");
     }
 
 
