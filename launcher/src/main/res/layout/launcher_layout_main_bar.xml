@@ -13,15 +13,15 @@
 
 
     <TextView
-        android:id="@+id/service_title"
+        android:id="@+id/connect_title"
         android:layout_width="@dimen/toolbar_normal_height"
         android:layout_height="@dimen/toolbar_normal_height"
         android:gravity="center"
-        android:layout_marginLeft="39dp"
-        android:text="服务"
+        android:text="联系人"
         android:textColor="#ffffff"
         android:textSize="14dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
         />
 
     <TextView

@@ -62,7 +62,7 @@ public class GuideActivity extends BaseActivity {
                     @Override
                     public void startOpen() {
                         //回调跳转的逻辑
-                        Toast.makeText(GuideActivity.this, "进入Banners", Toast.LENGTH_SHORT).show();
+                        toPath("/HomeActivity");
                     }
                 });
         bannerView.setAdapter(new BannerAdapter(GuideActivity.this), localImages);

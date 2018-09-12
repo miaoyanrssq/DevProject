@@ -5,19 +5,21 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.zgy.base.BaseActivity;
 import cn.zgy.base.widget.GuideView;
 import cn.zgy.launcher.manager.TabManager;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 
-public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{
+public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener {
 
     private static final String FIRST_TAB_TAG = "home";
 
@@ -25,6 +27,8 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     RadioGroup launcherBottom;
     @BindView(R2.id.launcher_home)
     RadioButton launcherHome;
+    @BindView(R2.id.connect_title)
+    TextView connectTitle;
 
 
     @Override
@@ -88,7 +92,6 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 .setTag("userCenter");
 
 
-
         launcherHome.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -99,6 +102,7 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
 
     int mClickCount = 0;
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && mClickCount == 0) {
@@ -113,5 +117,10 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @OnClick(R2.id.connect_title)
+    public void onViewClicked() {
+        toPath("/ConnectActivity");
     }
 }

@@ -150,7 +150,7 @@ public class NewsFragment extends BaseFragment implements OnRefreshListener, OnL
             items.add(richItem);
         }
 
-        Log.e("Tga", new Gson().toJson(items));
+//        Log.e("Tga", new Gson().toJson(items));
 
         adapter.setItems(items);
         adapter.notifyDataSetChanged();

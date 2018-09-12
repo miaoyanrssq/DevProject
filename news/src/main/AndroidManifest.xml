@@ -21,5 +21,19 @@
                     />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ConnectActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="@string/data_scheme"
+                    android:host="@string/data_host"
+                    android:path="/ConnectActivity"
+                    />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

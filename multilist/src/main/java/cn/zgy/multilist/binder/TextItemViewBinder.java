@@ -41,13 +41,12 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
 
   static class TextHolder extends RecyclerView.ViewHolder {
 
-    private @NonNull
-    final TextView text;
+    TextView text;
 
 
     TextHolder(@NonNull View itemView) {
       super(itemView);
-      this.text = (TextView) itemView.findViewById(R.id.text);
+      text = itemView.findViewById(R.id.text);
     }
   }
 
