@@ -1,15 +1,16 @@
 package cn.zgy.user;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 
 import cn.zgy.base.BaseActivity;
-import cn.zgy.base.StatusBarUtil;
+import cn.zgy.base.utils.StatusBarUtil;
 
 public class UserActivity extends BaseActivity {
 
+    ImageView icon;
     Toolbar toolbar;
     @Override
     protected int getLayoutId() {
@@ -34,6 +35,14 @@ public class UserActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        icon = findById(R.id.icon);
+        icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }

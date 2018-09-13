@@ -11,7 +11,7 @@ import com.zhouyou.http.cache.model.CacheMode;
 import com.zhouyou.http.model.HttpHeaders;
 import com.zhouyou.http.model.HttpParams;
 
-import cn.zgy.base.UIUtils;
+import cn.zgy.base.utils.UIUtils;
 import cn.zgy.rxtool.RxTool;
 
 public class BaseApplication extends MultiDexApplication {

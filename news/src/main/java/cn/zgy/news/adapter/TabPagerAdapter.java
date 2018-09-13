@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import cn.zgy.base.UIUtils;
+import cn.zgy.base.utils.UIUtils;
 import cn.zgy.news.R;
 import cn.zgy.news.adapter.cache.PagerCache;
 

@@ -10,6 +10,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import cn.zgy.base.swipeback.app.SwipeBackActivity;
+import cn.zgy.base.utils.UIUtils;
+
 /**
 *
  *沉浸式状态栏

@@ -15,7 +15,7 @@ import java.io.StreamCorruptedException;
 import java.lang.ref.WeakReference;
 import java.util.Set;
 
-import cn.zgy.base.UIUtils;
+import cn.zgy.base.utils.UIUtils;
 
 
 /**

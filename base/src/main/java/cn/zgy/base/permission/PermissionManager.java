@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import cn.zgy.base.UIUtils;
+import cn.zgy.base.utils.UIUtils;
 import cn.zgy.base.db.SPHelper;
 
 /**

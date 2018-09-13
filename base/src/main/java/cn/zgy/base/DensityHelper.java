@@ -1,5 +1,7 @@
 package cn.zgy.base;
 
+import cn.zgy.base.utils.UIUtils;
+
 /**
  * Dpi相关类
  *
