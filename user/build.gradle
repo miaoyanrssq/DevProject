@@ -40,5 +40,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     //nav
     implementation project(':nav')
+    //nav
+    implementation project(':base')
     api project(':blurview')
 }
