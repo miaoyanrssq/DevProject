@@ -1,4 +1,4 @@
-package cn.zgy.base;
+package cn.zgy.base.utils;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
@@ -15,7 +15,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.v4.content.FileProvider;
-import android.telephony.TelephonyManager;
 import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.Spanned;
