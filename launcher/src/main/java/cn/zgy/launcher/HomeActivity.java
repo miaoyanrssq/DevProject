@@ -3,6 +3,7 @@ package cn.zgy.launcher;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -119,8 +120,15 @@ public class HomeActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         return super.onKeyDown(keyCode, event);
     }
 
-    @OnClick(R2.id.connect_title)
-    public void onViewClicked() {
-        toPath("/ConnectActivity");
+    @OnClick({R2.id.connect_title, R2.id.ll_launcher_user})
+    public void onViewClicked(View view) {
+        if(view.getId() == R.id.connect_title) {
+            toPath("/ConnectActivity");
+        }else if(view.getId() == R.id.ll_launcher_user){
+            toPath("/UserActivity");
+        }
+
     }
+
+
 }

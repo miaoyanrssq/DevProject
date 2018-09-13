@@ -53,6 +53,8 @@ dependencies {
 
     implementation project(':multitype')
 
+    implementation project(':user')
+
 
 
     implementation 'com.jakewharton:butterknife:8.8.1'
