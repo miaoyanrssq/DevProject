@@ -4,4 +4,8 @@
     <declare-styleable name="AutoSizeText">
         <attr name="sizeRange" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="RatioLayout">
+        <attr name="ratio_w2h" format="string" />
+    </declare-styleable>
 </resources>

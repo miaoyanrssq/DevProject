@@ -43,6 +43,9 @@ public class UserActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
+                Bundle bundle = new Bundle();
+                bundle.putInt("max_num", 1);
+                toPath("/MediaSelectActivity", 0, bundle);
             }
         });
     }

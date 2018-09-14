@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.zgy.autoview.RatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:ratio_w2h="1:1">
+
+    <ImageView
+        android:id="@+id/iv_picture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:button="@drawable/sl_cb_button"
+        android:layout_gravity="top|right" />
+
+</cn.zgy.autoview.RatioFrameLayout>
