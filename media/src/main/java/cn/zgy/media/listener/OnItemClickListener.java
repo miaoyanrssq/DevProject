@@ -2,6 +2,8 @@ package cn.zgy.media.listener;
 
 import android.view.View;
 
+import cn.zgy.photoview.Info;
+
 
 public interface OnItemClickListener {
 

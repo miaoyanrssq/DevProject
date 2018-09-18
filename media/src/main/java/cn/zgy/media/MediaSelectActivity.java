@@ -33,6 +33,7 @@ import cn.zgy.media.fragment.ImagePreviewFragment;
 import cn.zgy.media.listener.OnItemClickListener;
 import cn.zgy.multitype.Items;
 import cn.zgy.multitype.MultiTypeAdapter;
+import cn.zgy.photoview.Info;
 
 public class MediaSelectActivity extends BaseActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, OnItemClickListener, ImagePreviewFragment.OnClick{
 
@@ -185,6 +186,7 @@ public class MediaSelectActivity extends BaseActivity implements View.OnClickLis
         }
         previewHolder.show(position);
     }
+
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {

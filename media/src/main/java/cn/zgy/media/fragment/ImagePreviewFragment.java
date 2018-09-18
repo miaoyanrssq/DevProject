@@ -1,6 +1,5 @@
 package cn.zgy.media.fragment;
 
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,19 +7,12 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
-//import com.bumptech.glide.Glide;
-//import com.bumptech.glide.load.DataSource;
-//import com.bumptech.glide.load.engine.GlideException;
-//import com.bumptech.glide.request.RequestListener;
-//import com.bumptech.glide.request.target.Target;
-
-import javax.sql.DataSource;
 
 import cn.zgy.base.BaseFragment;
 import cn.zgy.imageloader.loader.ImageLoader;
 import cn.zgy.media.R;
+import cn.zgy.photoview.Info;
+import cn.zgy.photoview.PhotoView;
 
 public class ImagePreviewFragment extends BaseFragment implements View.OnClickListener{
 
@@ -29,7 +21,7 @@ public class ImagePreviewFragment extends BaseFragment implements View.OnClickLi
     //图片url
     private String mUrl;
 
-    private ImageView preview;
+    private PhotoView preview;
 
     public static ImagePreviewFragment newInstance(String url) {
         ImagePreviewFragment fragment = new ImagePreviewFragment();
@@ -44,6 +36,7 @@ public class ImagePreviewFragment extends BaseFragment implements View.OnClickLi
     {
         this.click = click;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,26 +57,20 @@ public class ImagePreviewFragment extends BaseFragment implements View.OnClickLi
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         preview = findViewById(R.id.preview);
+        preview.enable();
+        preview.enableRotate();
         preview.setOnClickListener(this);
         loadImage();
     }
 
     private void loadImage() {
-
-//        Uri uri = Uri.parse(mUrl);
-//        if (uri != null) {
-//            try {
-//                mUrl = uri.buildUpon().appendQueryParameter("support_spare", String.valueOf(false)).build().toString();
-//            } catch (Exception e) {
-//            }
-//        }
         ImageLoader.with(getContext()).url(mUrl).into(preview);
     }
 
     @Override
     public void onClick(View view) {
         if(click != null){
-            click.onPreviewClick(view);
+//            click.onPreviewClick(view);
         }
     }
 

@@ -61,10 +61,10 @@ public class MediaBinder extends ItemViewBinder<MediaEntity, MediaBinder.MediaHo
 
     @Override
     protected void onBindViewHolder(@NonNull MediaHolder holder, @NonNull MediaEntity item) {
-        if(!TextUtils.isEmpty(item.getThumbnail())) {
-            ImageLoader.with(holder.iv_picture.getContext()).url(item.getThumbnail()).into(holder.iv_picture);
-        }else{
+        if(TextUtils.isEmpty(item.getThumbnail())) {
             ImageLoader.with(holder.iv_picture.getContext()).url(item.getPath()).into(holder.iv_picture);
+        }else{
+            ImageLoader.with(holder.iv_picture.getContext()).url(item.getThumbnail()).into(holder.iv_picture);
         }
         holder.check_box.setTag(null);
         holder.check_box.setChecked(item.isSelected());
