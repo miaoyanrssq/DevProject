@@ -12,6 +12,7 @@ import com.zhouyou.http.model.HttpHeaders;
 import com.zhouyou.http.model.HttpParams;
 
 import cn.zgy.base.utils.UIUtils;
+import cn.zgy.imageloader.loader.ImageLoader;
 import cn.zgy.rxtool.RxTool;
 
 public class BaseApplication extends MultiDexApplication {
@@ -33,6 +34,8 @@ public class BaseApplication extends MultiDexApplication {
         RxTool.init(this);
 
         initNetwork();
+
+        ImageLoader.init(this);
 
 
 }
@@ -110,5 +113,20 @@ public class BaseApplication extends MultiDexApplication {
                 .configFormatTag("%d{HH:mm:ss:SSS} %t %c{-5}")//个性化设置标签，默认显示包名
                 .configLevel(Log.VERBOSE);//设置日志最小输出级别，默认Log.VERBOSE
         ViseLog.plant(new LogcatTree());//添加打印日志信息到Logcat的树
+    }
+
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+
+        ImageLoader.trimMemory(level);
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+
+        ImageLoader.clearAllMemoryCaches();
     }
 }

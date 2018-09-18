@@ -10,8 +10,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 
+import cn.zgy.imageloader.loader.ImageLoader;
 import cn.zgy.media.R;
 import cn.zgy.media.bean.MediaEntity;
 import cn.zgy.media.listener.OnItemClickListener;
@@ -61,10 +61,10 @@ public class MediaBinder extends ItemViewBinder<MediaEntity, MediaBinder.MediaHo
 
     @Override
     protected void onBindViewHolder(@NonNull MediaHolder holder, @NonNull MediaEntity item) {
-        if(TextUtils.isEmpty(item.getThumbnail())) {
-            Glide.with(holder.iv_picture).load(item.getPath()).into(holder.iv_picture);
+        if(!TextUtils.isEmpty(item.getThumbnail())) {
+            ImageLoader.with(holder.iv_picture.getContext()).url(item.getThumbnail()).into(holder.iv_picture);
         }else{
-            Glide.with(holder.iv_picture).load(item.getThumbnail()).into(holder.iv_picture);
+            ImageLoader.with(holder.iv_picture.getContext()).url(item.getPath()).into(holder.iv_picture);
         }
         holder.check_box.setTag(null);
         holder.check_box.setChecked(item.isSelected());

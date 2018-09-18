@@ -10,13 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+//import com.bumptech.glide.Glide;
+//import com.bumptech.glide.load.DataSource;
+//import com.bumptech.glide.load.engine.GlideException;
+//import com.bumptech.glide.request.RequestListener;
+//import com.bumptech.glide.request.target.Target;
+
+import javax.sql.DataSource;
 
 import cn.zgy.base.BaseFragment;
+import cn.zgy.imageloader.loader.ImageLoader;
 import cn.zgy.media.R;
 
 public class ImagePreviewFragment extends BaseFragment implements View.OnClickListener{
@@ -74,17 +77,7 @@ public class ImagePreviewFragment extends BaseFragment implements View.OnClickLi
 //            } catch (Exception e) {
 //            }
 //        }
-        Glide.with(preview).load(mUrl).listener(new RequestListener<Drawable>() {
-            @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                return false;
-            }
-
-            @Override
-            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                return false;
-            }
-        }).into(preview);
+        ImageLoader.with(getContext()).url(mUrl).into(preview);
     }
 
     @Override

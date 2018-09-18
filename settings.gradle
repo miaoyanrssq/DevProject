@@ -1,4 +1,4 @@
-include ':app', ':launcher', ':base', ':nav', ':banner', ':multilist', ':autoview', ':news', ':user', ':blurview', ':media',
+include ':app', ':launcher', ':base', ':nav', ':banner', ':multilist', ':autoview', ':news', ':user', ':blurview', ':media', ':imageloader',
         'viselog',
         'rxtool',
         'rxeasyhttp', ':multitype','refresh-layout'

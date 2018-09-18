@@ -61,6 +61,9 @@ dependencies {
     //base
     implementation project(':base')
 
+    //imageloader
+    implementation project(':imageloader')
+
     configurations.all {
         //版本号以此配置为主,添加新的版本两个部分都要添加
         resolutionStrategy {
