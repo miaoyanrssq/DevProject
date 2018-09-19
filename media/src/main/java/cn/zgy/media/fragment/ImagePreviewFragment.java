@@ -70,7 +70,7 @@ public class ImagePreviewFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onClick(View view) {
         if(click != null){
-//            click.onPreviewClick(view);
+            click.onPreviewClick(view);
         }
     }
 

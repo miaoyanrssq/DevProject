@@ -7,14 +7,12 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -29,9 +27,10 @@ import cn.zgy.multilist.bean.TypeItem;
 import cn.zgy.multilist.binder.ImageItemViewBinder;
 import cn.zgy.multilist.binder.RichItemViewBinder;
 import cn.zgy.multilist.binder.TextItemViewBinder;
-import cn.zgy.multilist.json.TypeParser;
+import cn.zgy.multilist.json.TypeDeserializer;
 import cn.zgy.multitype.Items;
 import cn.zgy.multitype.MultiTypeAdapter;
+import cn.zgy.multitype.Parser;
 
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 /**
@@ -42,6 +41,7 @@ import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 public class OneToManyFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener {
 
 
+    Parser parser;
     private static final String JSONDATA = "[{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165302,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165301,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165302,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165301,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165302,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165301,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165302,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165301,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165302,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165301,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"}]";
     private View mCacheView;
     private View mEmptyLayout;
@@ -133,7 +133,9 @@ public class OneToManyFragment extends BaseFragment implements OnRefreshListener
     }
 
     private void loadRemoteData(){
-        List<TypeItem> list = TypeParser.fromJson(JSONDATA);
+        parser = new TypeDeserializer();
+        List<TypeItem> list = parser.fromJson(JSONDATA);
+
         items = new Items(items);
         items.addAll(list);
         adapter.setItems(items);

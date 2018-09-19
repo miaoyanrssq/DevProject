@@ -304,7 +304,7 @@ public class MediaSelectActivity extends BaseActivity implements View.OnClickLis
         public Fragment getItem(int position) {
             // TODO: 2018/9/13
             ImagePreviewFragment imagePreviewFragment = ImagePreviewFragment.newInstance(data.get(position));
-            imagePreviewFragment.setOnClick(MediaSelectActivity.this);
+//            imagePreviewFragment.setOnClick(MediaSelectActivity.this);
             return imagePreviewFragment;
         }
 
