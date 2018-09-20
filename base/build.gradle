@@ -39,4 +39,5 @@ dependencies {
     implementation project(':nav')
     //工具类
     implementation project(':rxtool')
+    implementation project(':web')
 }

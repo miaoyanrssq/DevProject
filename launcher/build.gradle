@@ -55,6 +55,8 @@ dependencies {
 
     implementation project(':user')
 
+    implementation project(':detail')
+
 
 
     implementation 'com.jakewharton:butterknife:8.8.1'

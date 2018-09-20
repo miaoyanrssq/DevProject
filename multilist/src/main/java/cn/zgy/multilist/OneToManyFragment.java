@@ -146,6 +146,6 @@ public class OneToManyFragment extends BaseFragment implements OnRefreshListener
 
     @Override
     public void onItemClick(View itemView, int position) {
-        toPath("/BrowserActivity");
+        toPath("/BrowserActivity2");
     }
 }

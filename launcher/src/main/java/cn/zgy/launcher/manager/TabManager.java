@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 
+import cn.zgy.detail.JsFragment;
 import cn.zgy.launcher.fragment.AdFragment;
 import cn.zgy.launcher.fragment.TestFragment;
 import cn.zgy.multilist.Loading_NewsFragment;
@@ -49,7 +50,7 @@ public class TabManager {
                 fragment=new Loading_NewsFragment();
                 break;
             case "subscription":
-                fragment = new TestFragment();
+                fragment = new JsFragment();
                 break;
             case "discovery":
                 fragment=new TestFragment();
