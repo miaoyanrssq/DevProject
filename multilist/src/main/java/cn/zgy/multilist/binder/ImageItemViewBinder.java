@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import cn.zgy.base.listener.OnItemClickListener;
 import cn.zgy.multilist.R;
 import cn.zgy.multilist.bean.ImageItem;
 import cn.zgy.multitype.ItemViewBinder;
@@ -35,6 +36,7 @@ import cn.zgy.multitype.ItemViewBinder;
 public class ImageItemViewBinder extends ItemViewBinder<ImageItem, ImageItemViewBinder.ImageHolder>{
 
 
+  OnItemClickListener click;
 
   class ImageHolder extends RecyclerView.ViewHolder {
 
@@ -42,18 +44,24 @@ public class ImageItemViewBinder extends ItemViewBinder<ImageItem, ImageItemView
     final ImageView image;
 
 
-    ImageHolder(View itemView) {
+    ImageHolder(final View itemView) {
       super(itemView);
       image = (ImageView) itemView.findViewById(R.id.image);
       image.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-          Toast.makeText(view.getContext(), "Click Image == " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+          if(click != null){
+            click.onItemClick(itemView,getAdapterPosition());
+          }
         }
       });
     }
   }
 
+
+  public ImageItemViewBinder(OnItemClickListener click) {
+    this.click = click;
+  }
 
   @Override
   protected @NonNull
@@ -67,6 +75,8 @@ public class ImageItemViewBinder extends ItemViewBinder<ImageItem, ImageItemView
   protected void onBindViewHolder(@NonNull ImageHolder holder, @NonNull ImageItem imageContent) {
     holder.image.setImageResource(imageContent.resId);
   }
+
+
 
 
 }

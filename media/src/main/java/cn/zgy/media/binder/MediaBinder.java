@@ -11,10 +11,10 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 
+import cn.zgy.base.listener.OnItemClickListener;
 import cn.zgy.imageloader.loader.ImageLoader;
 import cn.zgy.media.R;
 import cn.zgy.media.bean.MediaEntity;
-import cn.zgy.media.listener.OnItemClickListener;
 import cn.zgy.multitype.ItemViewBinder;
 
 public class MediaBinder extends ItemViewBinder<MediaEntity, MediaBinder.MediaHolder> {

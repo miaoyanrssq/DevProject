@@ -20,6 +20,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.List;
 
 import cn.zgy.base.BaseFragment;
+import cn.zgy.base.listener.OnItemClickListener;
 import cn.zgy.multilist.bean.ImageItem;
 import cn.zgy.multilist.bean.RichItem;
 import cn.zgy.multilist.bean.TextItem;
@@ -38,7 +39,7 @@ import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 * @author zhengy
 * create at 2018/9/7 下午4:02
 **/
-public class OneToManyFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener {
+public class OneToManyFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener, OnItemClickListener {
 
 
     Parser parser;
@@ -99,9 +100,9 @@ public class OneToManyFragment extends BaseFragment implements OnRefreshListener
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
         adapter = new MultiTypeAdapter();
-        adapter.register(TextItem.class, new TextItemViewBinder());
-        adapter.register(ImageItem.class, new ImageItemViewBinder());
-        adapter.register(RichItem.class, new RichItemViewBinder());
+        adapter.register(TextItem.class, new TextItemViewBinder(this));
+        adapter.register(ImageItem.class, new ImageItemViewBinder(this));
+        adapter.register(RichItem.class, new RichItemViewBinder(this));
         mRecyclerView.setAdapter(adapter);
 
 
@@ -142,4 +143,9 @@ public class OneToManyFragment extends BaseFragment implements OnRefreshListener
         adapter.notifyDataSetChanged();
     }
 
+
+    @Override
+    public void onItemClick(View itemView, int position) {
+        toPath("/BrowserActivity");
+    }
 }

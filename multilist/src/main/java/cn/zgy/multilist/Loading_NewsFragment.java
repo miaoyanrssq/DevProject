@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.zgy.base.BaseFragment;
+import cn.zgy.base.listener.OnItemClickListener;
 import cn.zgy.multilist.bean.ImageItem;
 import cn.zgy.multilist.bean.RichItem;
 import cn.zgy.multilist.bean.TextItem;
@@ -41,7 +42,7 @@ import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
 * @author zhengy
 * create at 2018/9/11 下午2:38
 **/
-public class Loading_NewsFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener
+public class Loading_NewsFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener, OnItemClickListener
 
     {
 
@@ -109,9 +110,9 @@ public class Loading_NewsFragment extends BaseFragment implements OnRefreshListe
             mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
             adapter = new MultiTypeAdapter();
-            adapter.register(TextItem.class, new TextItemViewBinder());
-            adapter.register(ImageItem.class, new ImageItemViewBinder());
-            adapter.register(RichItem.class, new RichItemViewBinder());
+            adapter.register(TextItem.class, new TextItemViewBinder(this));
+            adapter.register(ImageItem.class, new ImageItemViewBinder(this));
+            adapter.register(RichItem.class, new RichItemViewBinder(this));
             mRecyclerView.setAdapter(adapter);
 
 
@@ -172,6 +173,11 @@ public class Loading_NewsFragment extends BaseFragment implements OnRefreshListe
                     }, new LoadViewHolder(mRefreshLayout, container));
 
 
+        }
+
+        @Override
+        public void onItemClick(View itemView, int position) {
+            toPath("/BrowserActivity");
         }
     }
 

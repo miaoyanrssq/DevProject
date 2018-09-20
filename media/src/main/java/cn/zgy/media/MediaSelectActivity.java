@@ -23,6 +23,7 @@ import java.util.List;
 
 import cn.zgy.autoview.GridSpacingItemDecoration;
 import cn.zgy.base.BaseActivity;
+import cn.zgy.base.listener.OnItemClickListener;
 import cn.zgy.base.permission.AbsPermCallBack;
 import cn.zgy.base.permission.Permission;
 import cn.zgy.base.permission.PermissionManager;
@@ -30,10 +31,7 @@ import cn.zgy.media.bean.MediaEntity;
 import cn.zgy.media.binder.MediaBinder;
 import cn.zgy.media.dao.LocalMediaDaoHelper;
 import cn.zgy.media.fragment.ImagePreviewFragment;
-import cn.zgy.media.listener.OnItemClickListener;
-import cn.zgy.multitype.Items;
 import cn.zgy.multitype.MultiTypeAdapter;
-import cn.zgy.photoview.Info;
 
 public class MediaSelectActivity extends BaseActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, OnItemClickListener, ImagePreviewFragment.OnClick{
 

@@ -26,6 +26,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import cn.zgy.base.listener.OnItemClickListener;
 import cn.zgy.multilist.R;
 import cn.zgy.multilist.bean.TextItem;
 import cn.zgy.multitype.ItemViewBinder;
@@ -37,9 +38,10 @@ import cn.zgy.multitype.ItemViewBinder;
 public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBinder.TextHolder> {
 
   private int lastShownAnimationPosition;
+  OnItemClickListener click;
 
 
-  static class TextHolder extends RecyclerView.ViewHolder {
+  class TextHolder extends RecyclerView.ViewHolder {
 
     TextView text;
 
@@ -47,9 +49,18 @@ public class TextItemViewBinder extends ItemViewBinder<TextItem, TextItemViewBin
     TextHolder(@NonNull View itemView) {
       super(itemView);
       text = itemView.findViewById(R.id.text);
+      itemView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          click.onItemClick(view, getAdapterPosition());
+        }
+      });
     }
   }
 
+  public TextItemViewBinder(OnItemClickListener click) {
+    this.click = click;
+  }
 
   @Override
   protected @NonNull

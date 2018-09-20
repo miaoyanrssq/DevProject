@@ -23,6 +23,5 @@
         android:textColor="#ffffff"
         android:textSize="@dimen/ts_17sp"
         android:layout_alignParentBottom="true"
-        android:text="title"
         />
 </RelativeLayout>

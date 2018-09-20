@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.zgy.detail">
+
+    <application>
+        <activity android:name=".BrowserActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="@string/data_scheme"
+                    android:host="@string/data_host"
+                    android:path="/BrowserActivity"
+                    />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

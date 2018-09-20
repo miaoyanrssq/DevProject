@@ -26,6 +26,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cn.zgy.base.listener.OnItemClickListener;
 import cn.zgy.multilist.R;
 import cn.zgy.multilist.bean.RichItem;
 import cn.zgy.multitype.ItemViewBinder;
@@ -37,8 +38,9 @@ import cn.zgy.multitype.ItemViewBinder;
 public class RichItemViewBinder extends ItemViewBinder<RichItem, RichItemViewBinder.RichHolder> {
 
   private int lastShownAnimationPosition;
+  OnItemClickListener click;
 
-  static class RichHolder extends RecyclerView.ViewHolder {
+  class RichHolder extends RecyclerView.ViewHolder {
 
     @NonNull
     final TextView text;
@@ -50,9 +52,18 @@ public class RichItemViewBinder extends ItemViewBinder<RichItem, RichItemViewBin
       super(itemView);
       this.text = (TextView) itemView.findViewById(R.id.text);
       this.image = (ImageView) itemView.findViewById(R.id.image);
+      itemView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          click.onItemClick(view, getAdapterPosition());
+        }
+      });
     }
   }
 
+  public RichItemViewBinder(OnItemClickListener click) {
+    this.click = click;
+  }
 
   @Override
   protected @NonNull
