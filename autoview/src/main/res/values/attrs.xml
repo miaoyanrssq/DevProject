@@ -8,4 +8,23 @@
     <declare-styleable name="RatioLayout">
         <attr name="ratio_w2h" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="switchview">
+        <attr name="themeColor" format="color" />
+        <attr name="bgColor" format="color" />
+        <attr name="tabColor" format="color" />
+        <attr name="isOpen" format="boolean" />
+        <attr name="shape">
+            <enum name="rect" value="1" />
+            <enum name="circle" value="2" />
+        </attr>
+    </declare-styleable>
+
 </resources>

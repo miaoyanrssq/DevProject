@@ -44,4 +44,6 @@ dependencies {
     implementation project(':base')
     api project(':blurview')
     implementation project(':media')
+    implementation project(':refresh-layout')
+    implementation project(':autoview')
 }

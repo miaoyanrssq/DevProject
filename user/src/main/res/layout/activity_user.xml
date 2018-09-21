@@ -7,31 +7,111 @@
     android:background="@color/colorPrimary"
     tools:context=".UserActivity">
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/img5"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"
-        />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlDragRate="0.75"
+        app:srlEnableLoadMore="true"
+        app:srlEnablePureScrollMode="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
 
+            <cn.zgy.autoview.circleView.CircleImageView
+                android:id="@+id/icon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="80dp"
+                android:src="@drawable/image_avatar_3"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/white"
+                />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="#44ffffff">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="姓名"
+                android:textColor="@color/tc_ffffff"
+                android:textSize="16sp"
+                />
+
+            <cn.zgy.autoview.SwitchView
+                android:id="@+id/switch1"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                app:isOpen="true"
+                app:shape="circle"
+                app:themeColor="@color/colorPrimary"
+                app:bgColor="@color/dc_cecece"
+                />
+
+        </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="0.5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="#44ffffff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="性别"
+                    android:textColor="@color/tc_ffffff"
+                    android:textSize="16sp"
+                    />
+
+                <cn.zgy.autoview.SwitchView
+                    android:id="@+id/switch2"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    app:isOpen="false"
+                    app:shape="rect"
+                    app:themeColor="@color/colorPrimary"
+                    app:bgColor="@color/dc_cecece"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     <cn.zgy.blurview.RealtimeBlurView
         android:id="@+id/blurView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:realtimeOverlayColor="@android:color/transparent"
-        android:visibility="gone"
-        />
+        android:visibility="visible"
+        app:realtimeOverlayColor="@android:color/transparent" />
 
 
     <android.support.v7.widget.Toolbar
-        style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"
+        style="@style/AppTheme.Toolbar"
         android:background="@android:color/transparent"
         app:navigationIcon="@drawable/ic_top_bar_back_white"
-        app:title="用户中心"/>
+        app:title="用户中心" />
 
 </FrameLayout>
