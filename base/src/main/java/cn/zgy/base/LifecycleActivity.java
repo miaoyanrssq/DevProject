@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import cn.zgy.base.toolbar.ToolBarActivity;
 
 /**
  * 生命周期可监听回调 - Activity

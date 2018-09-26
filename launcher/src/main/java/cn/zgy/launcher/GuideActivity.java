@@ -1,20 +1,14 @@
 package cn.zgy.launcher;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import cn.zgy.banner.BannerView;
 import cn.zgy.banner.transformer.TransitionEffect;
 import cn.zgy.base.BaseActivity;
-import cn.zgy.base.toolbar.TopBarFactory;
 import cn.zgy.launcher.adapter.BannerAdapter;
 
 public class GuideActivity extends BaseActivity {

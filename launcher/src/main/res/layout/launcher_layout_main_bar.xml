@@ -61,7 +61,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/launcher_main_bar_mine"
-            app:iv_maskColor="@color/tc_ffffff_night" />
+            />
 
     </FrameLayout>
 
@@ -79,7 +79,7 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:src="@drawable/launcher_main_bar_search"
-            app:iv_maskColor="@color/tc_ffffff_night" />
+             />
 
 
     </FrameLayout>

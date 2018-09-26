@@ -32,7 +32,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.aliya:fitwindow:1.0.0'
-    implementation 'com.aliya:android-uimode:0.2.9'
     implementation 'com.google.code.gson:gson:2.6.2'
 
     //nav

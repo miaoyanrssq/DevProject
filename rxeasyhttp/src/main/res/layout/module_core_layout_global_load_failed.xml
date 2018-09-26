@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_launcher"
-        app:iv_maskColor="@android:color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/tv_error_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
