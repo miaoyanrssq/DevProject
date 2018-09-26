@@ -2,7 +2,6 @@
 
 It's just a realtime blurring overlay like iOS UIVisualEffectView.
 
-![IMG](imgs/1.gif)
 
 Just put the view in the layout xml, no Java code is required.
 
@@ -57,33 +56,3 @@ I've run the sample on some old phones like Samsung Galaxy S2, Samsung Galaxy S3
 
 ![Nexus5](imgs/2.png)
 
-# Changelog
-
-### 1.1.2 (2018-05-28)
-
-Bug fix (Draw overlay color in rect).
-
-### 1.1.1 (2018-05-22)
-
-Fix downsample factor issue when blur radius is very big.
-
-### 1.1.0 (2017-01-02)
-
-Some improvements (OOM, resize, window background)
-
-### 1.0.8 (2016-11-29)
-
-Fix view not refreshed issue on PopupWindow
-
-### 1.0.6 (2016-11-7)
-
-Fix crash when view is very small (draw at least 1px)
-
-### 1.0.5 (2016-11-5)
-
-Support Popup Window (Use it as dialog background)
-Ignore UnsatisfiedLinkError if APK is not debuggable.
-
-### 1.0.4 (2016-9-28)
-
-Support custom shape (by override drawBlurredBitmap()), support view in ContextThemeWrapper.

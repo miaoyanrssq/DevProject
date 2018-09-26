@@ -41,30 +41,7 @@ public class BaseFragment extends Fragment implements IPermissionOperate {
         }
     }
 
-//    /**
-//     * 替换加载View
-//     */
-//    public LoadViewHolder replaceLoad() {
-//        return new LoadViewHolder(getView(), container);
-//    }
-//
-//    /**
-//     * 替换加载View
-//     *
-//     * @param pageView 需要替换成加载View的该页面View
-//     */
-//    public LoadViewHolder replaceLoad(View pageView) {
-//        return new LoadViewHolder(pageView, container);
-//    }
-//
-//    /**
-//     * 替换加载View
-//     *
-//     * @param id 需要替换成加载View的该页面View的id
-//     */
-//    public LoadViewHolder replaceLoad(@IdRes int id) {
-//        return replaceLoad(findViewById(id));
-//    }
+
 
     /**
      * 返回Fragment自身<br/>
