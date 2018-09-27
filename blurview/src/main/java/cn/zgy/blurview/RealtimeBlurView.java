@@ -50,6 +50,11 @@ public class RealtimeBlurView extends View {
 	private boolean mDifferentRoot;
 	private static int RENDERING_COUNT;
 
+
+	public RealtimeBlurView(Context context) {
+		this(context, null);
+	}
+
 	public RealtimeBlurView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 

@@ -2,14 +2,19 @@ package cn.zgy.user;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import cn.zgy.autoview.SwitchView;
 import cn.zgy.autoview.circleView.CircleImageView;
 import cn.zgy.base.BaseActivity;
 import cn.zgy.base.utils.StatusBarUtil;
+import cn.zgy.blurview.RealtimeBlurView;
 
 public class UserActivity extends BaseActivity implements SwitchView.SlideListener{
 
@@ -17,6 +22,7 @@ public class UserActivity extends BaseActivity implements SwitchView.SlideListen
     Toolbar toolbar;
 
     SwitchView switchView1, switchView2;
+
 
     @Override
     protected int getLayoutId() {
