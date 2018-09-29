@@ -12,6 +12,7 @@ import cn.zgy.multilist.Loading_NewsFragment;
 import cn.zgy.multilist.NewsFragment;
 import cn.zgy.multilist.OneToManyFragment;
 import cn.zgy.news.HomeFragment;
+import cn.zgy.playerdemo.PlayerListFragment;
 
 
 /**
@@ -44,17 +45,19 @@ public class TabManager {
                 fragment = new HomeFragment();
                 break;
             case "local":
-                fragment=new OneToManyFragment();
+                fragment = new OneToManyFragment();
                 break;
             case "video":
-                fragment=new Loading_NewsFragment();
+                fragment = new PlayerListFragment();
                 break;
             case "subscription":
                 fragment = new JsFragment();
                 break;
             case "discovery":
-                fragment=new TestFragment();
+                fragment = new Loading_NewsFragment();
                 break;
+            default:
+                fragment = new Loading_NewsFragment();
         }
         return fragment;
     }

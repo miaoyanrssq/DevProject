@@ -64,6 +64,10 @@ dependencies {
     //imageloader
     implementation project(':imageloader')
 
+    //playerdemo
+    implementation project(':playerdemo')
+    implementation project(':playerbase')
+
     configurations.all {
         //版本号以此配置为主,添加新的版本两个部分都要添加
         resolutionStrategy {

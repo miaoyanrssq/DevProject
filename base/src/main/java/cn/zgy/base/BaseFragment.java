@@ -166,4 +166,12 @@ public class BaseFragment extends Fragment implements IPermissionOperate {
     public void toPath(String path) {
         Nav.with(this).toPath(path);
     }
+
+    public void toPath(String path, int requestCode) {
+        Nav.with(this).toPath(path, requestCode);
+    }
+
+    public void toPath(String path, int requestCode, Bundle bundle) {
+        Nav.with(this).setExtras(bundle).toPath(path, requestCode);
+    }
 }

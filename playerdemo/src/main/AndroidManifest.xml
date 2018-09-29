@@ -1,0 +1,41 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.zgy.playerdemo" >
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <application
+        >
+        <activity android:name=".DetailPageActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="@string/data_scheme"
+                    android:host="@string/data_host"
+                    android:path="/DetailPageActivity"
+                    />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".FullScreenActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="@string/data_scheme"
+                    android:host="@string/data_host"
+                    android:path="/FullScreenActivity"
+                    />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

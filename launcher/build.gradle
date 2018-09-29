@@ -57,6 +57,8 @@ dependencies {
 
     implementation project(':detail')
 
+    implementation project(':playerdemo')
+
 
 
     implementation 'com.jakewharton:butterknife:8.8.1'

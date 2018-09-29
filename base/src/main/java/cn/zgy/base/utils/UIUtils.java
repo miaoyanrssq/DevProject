@@ -1,7 +1,9 @@
 package cn.zgy.base.utils;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Application;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -16,6 +18,7 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.os.Handler;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -33,6 +36,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import cn.zgy.base.manager.AppManager;
@@ -509,5 +513,28 @@ public class UIUtils {
         } else {
             return null;
         }
+    }
+
+    public static boolean isTopActivity(Activity activity){
+        return activity!=null && isTopActivity(activity, activity.getClass().getName());
+    }
+
+    public static boolean isTopActivity(Context context, String activityName){
+        return isForeground(context, activityName);
+    }
+
+    public static boolean isForeground(Context context, String className) {
+        if (context == null || TextUtils.isEmpty(className)) {
+            return false;
+        }
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(1);
+        if (list != null && list.size() > 0) {
+            ComponentName cpn = list.get(0).topActivity;
+            if (className.equals(cpn.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

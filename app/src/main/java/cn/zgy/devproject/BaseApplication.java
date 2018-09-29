@@ -3,6 +3,9 @@ package cn.zgy.devproject;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
+import com.kk.taurus.playerbase.config.PlayerConfig;
+import com.kk.taurus.playerbase.config.PlayerLibrary;
+import com.kk.taurus.playerbase.entity.DecoderPlan;
 import com.vise.log.ViseLog;
 import com.vise.log.inner.LogcatTree;
 import com.zhouyou.http.EasyHttp;
@@ -13,10 +16,12 @@ import com.zhouyou.http.model.HttpParams;
 
 import cn.zgy.base.utils.UIUtils;
 import cn.zgy.imageloader.loader.ImageLoader;
+import cn.zgy.playerdemo.exoplayer.ExoMediaPlayer;
 import cn.zgy.rxtool.RxTool;
 
 public class BaseApplication extends MultiDexApplication {
 
+    public static final int PLAN_ID_EXO = 1;
     /**
      * AppId
      **/
@@ -37,8 +42,12 @@ public class BaseApplication extends MultiDexApplication {
 
         ImageLoader.init(this);
 
+        initPlayer();
+
 
 }
+
+
 
     private void initNetwork() {
         EasyHttp.init(this);//默认初始化,必须调用
@@ -115,6 +124,16 @@ public class BaseApplication extends MultiDexApplication {
         ViseLog.plant(new LogcatTree());//添加打印日志信息到Logcat的树
     }
 
+
+    private void initPlayer() {
+
+        //使用ExoPlayer解码
+        ExoMediaPlayer.init(this);
+        //如果您想使用默认的网络状态事件生产者，请添加此行配置。
+        //并需要添加权限 android.permission.ACCESS_NETWORK_STATE
+        PlayerConfig.setUseDefaultNetworkEventProducer(true);
+
+    }
 
     @Override
     public void onTrimMemory(int level) {
