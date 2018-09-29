@@ -204,6 +204,7 @@ public class PlayerListFragment extends BaseFragment implements VideoBinder.OnLi
         super.onHiddenChanged(hidden);
         if (hidden) {
             closeWindow();
+            AssistPlayer.get(context).pause();
             videoBinder.updatePlayPosition(-1);
         }
     }
