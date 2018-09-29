@@ -10,7 +10,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,6 @@ import cn.zgy.playerdemo.cover.CloseCover;
 import cn.zgy.playerdemo.cover.CompleteCover;
 import cn.zgy.playerdemo.cover.ControllerCover;
 import cn.zgy.playerdemo.cover.ErrorCover;
-import cn.zgy.playerdemo.cover.GestureCover;
 import cn.zgy.playerdemo.cover.LoadingCover;
 import cn.zgy.playerdemo.play.AssistPlayer;
 import cn.zgy.playerdemo.play.DataInter;
@@ -50,8 +48,14 @@ import static cn.zgy.playerdemo.play.DataInter.ReceiverKey.KEY_CONTROLLER_COVER;
 import static cn.zgy.playerdemo.play.DataInter.ReceiverKey.KEY_ERROR_COVER;
 import static cn.zgy.playerdemo.play.DataInter.ReceiverKey.KEY_LOADING_COVER;
 
-public class PlayerListFragment extends BaseFragment implements VideoBinder.OnListListener,VideoBinder.OnSwitchWindowListener,
-        OnReceiverEventListener, OnPlayerEventListener{
+/**
+ * 视频列表展示， 小窗口展示，页面跳转及全屏
+ *
+ * @author zhengy
+ * create at 2018/9/29 下午3:07
+ **/
+public class PlayerListFragment extends BaseFragment implements VideoBinder.OnListListener, VideoBinder.OnSwitchWindowListener,
+        OnReceiverEventListener, OnPlayerEventListener {
 
     Context context;
     private List<VideoBean> mItems = new ArrayList<>();
@@ -90,8 +94,6 @@ public class PlayerListFragment extends BaseFragment implements VideoBinder.OnLi
     }
 
 
-
-
     private void initRecycleView() {
         mRecycler = findViewById(R.id.recycler);
         mRecycler.setItemAnimator(new DefaultItemAnimator());
@@ -128,10 +130,10 @@ public class PlayerListFragment extends BaseFragment implements VideoBinder.OnLi
      */
     private void initFloatWindow() {
         int type;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){//8.0+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {//8.0+
             type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
-        }else {
-            type =  WindowManager.LayoutParams.TYPE_PHONE;
+        } else {
+            type = WindowManager.LayoutParams.TYPE_PHONE;
         }
         int widthPixels = getResources().getDisplayMetrics().widthPixels;
         int width = (int) (widthPixels * 0.8f);
@@ -139,17 +141,17 @@ public class PlayerListFragment extends BaseFragment implements VideoBinder.OnLi
         mFloatWindow = new FloatWindow(context, mWindowVideoContainer,
                 new FloatWindowParams()
                         .setWindowType(type)
-                        .setX((int)(widthPixels * 0.2f))
-                        .setY(getResources().getDisplayMetrics().heightPixels - width*9/16 - 400)
+                        .setX((int) (widthPixels * 0.2f))
+                        .setY(getResources().getDisplayMetrics().heightPixels - width * 9 / 16 - 400)
                         .setWidth(width)
-                        .setHeight(width*9/16));
+                        .setHeight(width * 9 / 16));
         mFloatWindow.setBackgroundColor(Color.BLACK);
 
     }
 
 
     private void attachList() {
-        if(adapter!=null){
+        if (adapter != null) {
             mReceiverGroup.removeReceiver(DataInter.ReceiverKey.KEY_CLOSE_COVER);
             mReceiverGroup.removeReceiver(DataInter.ReceiverKey.KEY_GESTURE_COVER);
             mReceiverGroup.getGroupValue().putBoolean(DataInter.Key.KEY_CONTROLLER_TOP_ENABLE, false);
@@ -157,7 +159,7 @@ public class PlayerListFragment extends BaseFragment implements VideoBinder.OnLi
                 @Override
                 public void run() {
                     VideoBinder.VideoHolder itemHolder = videoBinder.getItemHolder();
-                    if(itemHolder != null){
+                    if (itemHolder != null) {
                         AssistPlayer.get(context).play(itemHolder.layoutContainer, null);
                     }
                 }
@@ -175,13 +177,13 @@ public class PlayerListFragment extends BaseFragment implements VideoBinder.OnLi
         mReceiverGroup.getGroupValue().putBoolean(DataInter.Key.KEY_CONTROLLER_TOP_ENABLE, false);
         AssistPlayer.get(context).setReceiverGroup(mReceiverGroup);
         AssistPlayer.get(context).setEventAssistHandler(eventHandler);
-        if(isWindow){
+        if (isWindow) {
             windowPlay();
-        }else {
+        } else {
             attachList();
         }
         int state = AssistPlayer.get(context).getState();
-        if(state!= IPlayer.STATE_PLAYBACK_COMPLETE){
+        if (state != IPlayer.STATE_PLAYBACK_COMPLETE) {
             AssistPlayer.get(context).resume();
         }
     }
@@ -193,18 +195,14 @@ public class PlayerListFragment extends BaseFragment implements VideoBinder.OnLi
         AssistPlayer.get(context).removeReceiverEventListener(this);
         AssistPlayer.get(context).removePlayerEventListener(this);
         AssistPlayer.get(context).setEventAssistHandler(null);
-        if(mFloatWindow.isWindowShow()){
-            isWindow = true;
-        }else {
-            isWindow = false;
-        }
+        isWindow = mFloatWindow.isWindowShow();
         closeWindow();
     }
 
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(hidden){
+        if (hidden) {
             closeWindow();
             videoBinder.updatePlayPosition(-1);
         }
@@ -228,31 +226,34 @@ public class PlayerListFragment extends BaseFragment implements VideoBinder.OnLi
 
     @Override
     public void onReceiverEvent(int eventCode, Bundle bundle) {
-        switch (eventCode){
+//        switch (eventCode) {
+            //此处和eventHandler中重复，只做一次处理
 //            case DataInter.Event.EVENT_CODE_REQUEST_BACK:
 //                break;
 //            case DataInter.Event.EVENT_CODE_REQUEST_TOGGLE_SCREEN:
 //                isWindow = false;
 //                toPath("/FullScreenActivity");
 //                break;
-        }
+//        }
     }
 
     @Override
     public void onPlayerEvent(int eventCode, Bundle bundle) {
-        switch (eventCode){
+        switch (eventCode) {
             case OnPlayerEventListener.PLAYER_EVENT_ON_PLAY_COMPLETE:
                 AssistPlayer.get(context).stop();
+                break;
+            default:
                 break;
 
         }
     }
 
-    private OnAssistPlayEventHandler eventHandler = new OnAssistPlayEventHandler(){
+    private OnAssistPlayEventHandler eventHandler = new OnAssistPlayEventHandler() {
         @Override
         public void onAssistHandle(AssistPlay assist, int eventCode, Bundle bundle) {
             super.onAssistHandle(assist, eventCode, bundle);
-            switch (eventCode){
+            switch (eventCode) {
                 case DataInter.Event.EVENT_CODE_ERROR_SHOW:
                     AssistPlayer.get(context).stop();
                 case DataInter.Event.EVENT_CODE_REQUEST_TOGGLE_SCREEN:
@@ -264,28 +265,30 @@ public class PlayerListFragment extends BaseFragment implements VideoBinder.OnLi
                     AssistPlayer.get(context).stop();
                     videoBinder.updatePlayPosition(-1);
                     break;
+                default:
+                    break;
             }
         }
     };
 
-    public void switchWindowPlay(boolean isWindow){
-        if(isWindow && !mFloatWindow.isWindowShow()){
-            if(WindowPermissionCheck.checkPermission(getActivity())){
+    public void switchWindowPlay(boolean isWindow) {
+        if (isWindow && !mFloatWindow.isWindowShow()) {
+            if (WindowPermissionCheck.checkPermission(getActivity())) {
                 windowPlay();
             }
-        }else{
+        } else {
             attachList();
             closeWindow();
         }
     }
 
     private void windowPlay() {
-        if(!mFloatWindow.isWindowShow()){
+        if (!mFloatWindow.isWindowShow()) {
             mReceiverGroup.removeReceiver(DataInter.ReceiverKey.KEY_GESTURE_COVER);
             mReceiverGroup.addReceiver(DataInter.ReceiverKey.KEY_CLOSE_COVER, new CloseCover(context));
             mReceiverGroup.getGroupValue().putBoolean(DataInter.Key.KEY_CONTROLLER_TOP_ENABLE, false);
             mFloatWindow.setElevationShadow(20);
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 mFloatWindow.setRoundRectShape(50);
             }
             mFloatWindow.show();
@@ -293,8 +296,8 @@ public class PlayerListFragment extends BaseFragment implements VideoBinder.OnLi
         }
     }
 
-    private void closeWindow(){
-        if(mFloatWindow.isWindowShow()){
+    private void closeWindow() {
+        if (mFloatWindow.isWindowShow()) {
             mFloatWindow.close();
         }
     }

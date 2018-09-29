@@ -23,7 +23,7 @@ import cn.zgy.playerdemo.R;
 import cn.zgy.playerdemo.bean.VideoBean;
 import cn.zgy.playerdemo.play.AssistPlayer;
 
-public class VideoBinder extends ItemViewBinder<VideoBean, VideoBinder.VideoHolder>{
+public class VideoBinder extends ItemViewBinder<VideoBean, VideoBinder.VideoHolder> {
 
 
     private Context context;
@@ -38,13 +38,14 @@ public class VideoBinder extends ItemViewBinder<VideoBean, VideoBinder.VideoHold
 
     boolean isHide = true;//标志播放item是否隐藏，因为mPlayPosition = -1，初始化后，会调用onScrolled，因此在此设置未true，避免初始化时FloatWindow跳出来
 
-    public static class VideoHolder extends RecyclerView.ViewHolder{
+    public static class VideoHolder extends RecyclerView.ViewHolder {
         View card;
         public FrameLayout layoutContainer;
         public RelativeLayout layoutBox;
         View albumLayout;
         ImageView albumImage;
         TextView title;
+
         public VideoHolder(View itemView) {
             super(itemView);
             card = itemView.findViewById(R.id.card);
@@ -59,7 +60,7 @@ public class VideoBinder extends ItemViewBinder<VideoBean, VideoBinder.VideoHold
     public VideoBinder(final Context context, RecyclerView recyclerView) {
         this.context = context;
         this.mRecycler = recyclerView;
-        mScreenUseW = UIUtils.getScreenW() - UIUtils.dip2px(2*6);
+        mScreenUseW = UIUtils.getScreenW() - UIUtils.dip2px(2 * 6);
         mScreenUseH = UIUtils.getScreenH();
         recyclerView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -75,21 +76,19 @@ public class VideoBinder extends ItemViewBinder<VideoBean, VideoBinder.VideoHold
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
             }
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 int itemVisibleRectHeight = getItemVisibleRectHeight(mPlayPosition);
-                if(itemVisibleRectHeight <= 0){
-
-//                    AssistPlayer.get(context).stop();
+                if (itemVisibleRectHeight <= 0) {
                     getAdapter().notifyItemChanged(mPlayPosition);
-//                    mPlayPosition = -1;
-                    if(onSwitchWindowListener != null && !isHide){
+                    if (onSwitchWindowListener != null && !isHide) {
                         onSwitchWindowListener.onSwitchWindow(true);
                     }
                     isHide = true;
-                }else {
-                    if(onSwitchWindowListener != null && isHide){
+                } else {
+                    if (onSwitchWindowListener != null && isHide) {
                         onSwitchWindowListener.onSwitchWindow(false);
                     }
                     isHide = false;
@@ -109,11 +108,11 @@ public class VideoBinder extends ItemViewBinder<VideoBean, VideoBinder.VideoHold
         //阴影
         ViewCompat.setElevation(holder.card, UIUtils.dip2px(3));
         updateWH(holder);
-        if(!TextUtils.isEmpty(item.getCover())){
+        if (!TextUtils.isEmpty(item.getCover())) {
             ImageLoader.with(context)
                     .url(item.getCover())
                     .into(holder.albumImage);
-        }else{
+        } else {
             ImageLoader.with(context)
                     .url(item.getPath())
                     .into(holder.albumImage);
@@ -125,13 +124,13 @@ public class VideoBinder extends ItemViewBinder<VideoBean, VideoBinder.VideoHold
             public void onClick(View view) {
                 updatePlayPosition(getPosition(holder));
                 playPosition(holder, item);
-                if(onSwitchWindowListener != null && isHide){
+                if (onSwitchWindowListener != null && isHide) {
                     onSwitchWindowListener.onSwitchWindow(false);
                 }
             }
         });
 
-        if(onListListener!=null){
+        if (onListListener != null) {
             holder.title.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -146,7 +145,7 @@ public class VideoBinder extends ItemViewBinder<VideoBean, VideoBinder.VideoHold
 
     private void playPosition(final VideoHolder holder, VideoBean item) {
 
-        final DataSource dataSource= new DataSource(item.getPath());
+        final DataSource dataSource = new DataSource(item.getPath());
         dataSource.setTitle(item.getDisplayName());
         mRecycler.post(new Runnable() {
             @Override
@@ -157,7 +156,7 @@ public class VideoBinder extends ItemViewBinder<VideoBean, VideoBinder.VideoHold
 
     }
 
-    public void updatePlayPosition(int position){
+    public void updatePlayPosition(int position) {
         getAdapter().notifyItemChanged(mPlayPosition);
         mPlayPosition = position;
     }
@@ -165,7 +164,7 @@ public class VideoBinder extends ItemViewBinder<VideoBean, VideoBinder.VideoHold
     private void updateWH(VideoHolder holder) {
         ViewGroup.LayoutParams layoutParams = holder.layoutBox.getLayoutParams();
         layoutParams.width = mScreenUseW;
-        layoutParams.height = mScreenUseW * 9/16;
+        layoutParams.height = mScreenUseW * 9 / 16;
         holder.layoutBox.setLayoutParams(layoutParams);
     }
 
@@ -174,56 +173,57 @@ public class VideoBinder extends ItemViewBinder<VideoBean, VideoBinder.VideoHold
         this.onListListener = onListListener;
     }
 
-    public interface OnListListener{
+    public interface OnListListener {
         void onTitleClick(VideoBean item, int position);
     }
 
-    public void setOnSwitchWindowListener(OnSwitchWindowListener onSwitchWindowListener){
+    public void setOnSwitchWindowListener(OnSwitchWindowListener onSwitchWindowListener) {
         this.onSwitchWindowListener = onSwitchWindowListener;
     }
 
-    public interface OnSwitchWindowListener{
+    public interface OnSwitchWindowListener {
         void onSwitchWindow(boolean isWndow);
     }
 
     /**
      * 获取Item中渲染视图的可见高度
+     *
      * @param position
      * @return
      */
-    private int getItemVisibleRectHeight(int position){
+    private int getItemVisibleRectHeight(int position) {
         VideoHolder itemHolder = getItemHolder(position);
-        if(itemHolder==null)
+        if (itemHolder == null)
             return 0;
         int[] location = new int[2];
         itemHolder.layoutBox.getLocationOnScreen(location);
         int height = itemHolder.layoutBox.getHeight();
 
         int visibleRect;
-        if(location[1] <= mVerticalRecyclerStart){
+        if (location[1] <= mVerticalRecyclerStart) {
             visibleRect = location[1] - mVerticalRecyclerStart + height;
-        }else{
-            if(location[1] + height >= mScreenUseH){
+        } else {
+            if (location[1] + height >= mScreenUseH) {
                 visibleRect = mScreenUseH - location[1];
-            }else{
+            } else {
                 visibleRect = height;
             }
         }
         return visibleRect;
     }
 
-    public VideoHolder getItemHolder(int position){
+    public VideoHolder getItemHolder(int position) {
         RecyclerView.ViewHolder viewHolder = mRecycler.findViewHolderForLayoutPosition(position);
-        if(viewHolder!=null && viewHolder instanceof VideoHolder){
-            return ((VideoHolder)viewHolder);
+        if (viewHolder != null && viewHolder instanceof VideoHolder) {
+            return ((VideoHolder) viewHolder);
         }
         return null;
     }
 
-    public VideoHolder getItemHolder(){
+    public VideoHolder getItemHolder() {
         RecyclerView.ViewHolder viewHolder = mRecycler.findViewHolderForLayoutPosition(mPlayPosition);
-        if(viewHolder!=null && viewHolder instanceof VideoHolder){
-            return ((VideoHolder)viewHolder);
+        if (viewHolder != null && viewHolder instanceof VideoHolder) {
+            return ((VideoHolder) viewHolder);
         }
         return null;
     }
