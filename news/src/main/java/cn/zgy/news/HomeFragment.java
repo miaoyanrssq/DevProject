@@ -61,19 +61,19 @@ public class HomeFragment extends BaseFragment {
     private void initChannels() {
         channels.clear();
         channels.add(new ChannelBean((long)1, "新闻", true, true, "normal", "", 1));
-        channels.add(new ChannelBean((long)2, "视频", true, true, "normal", "", 2));
+        channels.add(new ChannelBean((long)2, "视频", true, true, "web", "", 2));
         channels.add(new ChannelBean((long)3, "直播", true, true, "normal", "", 3));
         channels.add(new ChannelBean((long)4, "图片", true, true, "normal", "", 4));
         channels.add(new ChannelBean((long)5, "作者", true, true, "author", "", 5));
         channels.add(new ChannelBean((long)1, "新闻2", true, true, "normal", "", 6));
-        channels.add(new ChannelBean((long)2, "视频2", true, true, "normal", "", 7));
+        channels.add(new ChannelBean((long)2, "视频2", true, true, "web", "", 7));
         channels.add(new ChannelBean((long)3, "直播2", true, true, "normal", "", 8));
         channels.add(new ChannelBean((long)4, "图片2", true, true, "normal", "", 9));
         channels.add(new ChannelBean((long)5, "作者2", true, true, "author", "", 10));
-        channels.add(new ChannelBean((long)1, "新闻3", true, true, "normal", "", 11));
+        channels.add(new ChannelBean((long)1, "新闻3", true, true, "web", "", 11));
         channels.add(new ChannelBean((long)2, "视频3", true, true, "normal", "", 12));
         channels.add(new ChannelBean((long)3, "直播3", true, true, "normal", "", 13));
-        channels.add(new ChannelBean((long)4, "图片3", true, true, "normal", "", 14));
+        channels.add(new ChannelBean((long)4, "图片3", true, true, "web", "", 14));
         channels.add(new ChannelBean((long)5, "作者3", true, true, "author", "", 15));
 
     }

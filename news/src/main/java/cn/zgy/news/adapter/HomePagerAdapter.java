@@ -9,6 +9,7 @@ import java.util.List;
 
 import cn.zgy.multilist.NewsFragment;
 import cn.zgy.multilist.OneToManyFragment;
+import cn.zgy.multilist.OneToManyFragment2;
 import cn.zgy.news.bean.ChannelBean;
 
 public class HomePagerAdapter extends TabPagerAdapter<ChannelBean> {
@@ -46,6 +47,9 @@ public class HomePagerAdapter extends TabPagerAdapter<ChannelBean> {
                 break;
             case "author":
                 f = new OneToManyFragment();
+                break;
+            case "web":
+                f = new OneToManyFragment2();
                 break;
             default:
                 f = new NewsFragment();

@@ -21,29 +21,36 @@ import java.util.List;
 
 import cn.zgy.base.BaseFragment;
 import cn.zgy.base.listener.OnItemClickListener;
+import cn.zgy.multilist.bean.Data;
 import cn.zgy.multilist.bean.ImageItem;
 import cn.zgy.multilist.bean.RichItem;
 import cn.zgy.multilist.bean.TextItem;
 import cn.zgy.multilist.bean.TypeItem;
+import cn.zgy.multilist.binder.DataTypeBinder1;
+import cn.zgy.multilist.binder.DataTypeBinder2;
+import cn.zgy.multilist.binder.DataTypeBinder3;
 import cn.zgy.multilist.binder.ImageItemViewBinder;
 import cn.zgy.multilist.binder.RichItemViewBinder;
 import cn.zgy.multilist.binder.TextItemViewBinder;
 import cn.zgy.multilist.json.TypeDeserializer;
+import cn.zgy.multitype.ClassLinker;
+import cn.zgy.multitype.ItemViewBinder;
 import cn.zgy.multitype.Items;
+import cn.zgy.multitype.Linker;
 import cn.zgy.multitype.MultiTypeAdapter;
 import cn.zgy.multitype.Parser;
 
 import static android.support.v7.widget.DividerItemDecoration.VERTICAL;
+
 /**
-* 模拟网络拉取数据，one-to-many一对多的关系，根据数据中type来制定相应的binder, 提供直接解析json数据的方案
-* @author zhengy
-* create at 2018/9/7 下午4:02
-**/
-public class OneToManyFragment extends BaseFragment implements OnRefreshListener, OnLoadMoreListener, OnItemClickListener {
+ * 模拟网络拉取数据，one-to-many一对多的关系，根据数据中type来制定相应的binder
+ *
+ * @author zhengy
+ * create at 2018/9/7 下午4:02
+ **/
+public class OneToManyFragment2 extends BaseFragment implements OnRefreshListener, OnLoadMoreListener {
 
 
-    Parser parser;
-    private static final String JSONDATA = "[{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165302,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165301,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165302,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165301,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165302,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165301,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165302,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165301,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165302,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"},{\"text\":\"纯文字列表条目\",\"type\":\"TextItem\"},{\"resId\":2131165301,\"type\":\"ImageItem\"},{\"imageResId\":2131165300,\"text\":\"左图右文列表条目\",\"type\":\"RichItem\"}]";
     private View mCacheView;
     private View mEmptyLayout;
     private RecyclerView mRecyclerView;
@@ -70,7 +77,7 @@ public class OneToManyFragment extends BaseFragment implements OnRefreshListener
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if(mCacheView == null) {
+        if (mCacheView == null) {
             mCacheView = view;
             initView();
             mRefreshLayout.autoRefresh();
@@ -100,9 +107,48 @@ public class OneToManyFragment extends BaseFragment implements OnRefreshListener
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), VERTICAL));
         adapter = new MultiTypeAdapter();
-        adapter.register(TextItem.class, new TextItemViewBinder(this));
-        adapter.register(ImageItem.class, new ImageItemViewBinder(this));
-        adapter.register(RichItem.class, new RichItemViewBinder(this));
+
+        /**
+         * 两种形式的一对多绑定
+         */
+//        adapter.register(Data.class).to(
+//                new DataTypeBinder1(),
+//                new DataTypeBinder2(),
+//                new DataTypeBinder3()
+//        ).withLinker(new Linker<Data>() {
+//            @Override
+//            public int index(int position, @NonNull Data data) {
+//                if(Data.TYPE_1.equals(data.getType())){
+//                    return 0;
+//                }else if(Data.TYPE_2.equals(data.getType())){
+//                    return 1;
+//                }else if(Data.TYPE_3.equals(data.getType())){
+//                    return 2;
+//                }
+//                return 0;
+//            }
+//        });
+
+        adapter.register(Data.class).to(
+                new DataTypeBinder1(),
+                new DataTypeBinder2(),
+                new DataTypeBinder3()
+        ).withClassLinker(new ClassLinker<Data>() {
+            @NonNull
+            @Override
+            public Class<? extends ItemViewBinder<Data, ?>> index(int position, @NonNull Data data) {
+                if(Data.TYPE_1.equals(data.getType())){
+                    return DataTypeBinder1.class;
+                }else if(Data.TYPE_2.equals(data.getType())){
+                    return DataTypeBinder2.class;
+                }else if(Data.TYPE_3.equals(data.getType())){
+                    return DataTypeBinder3.class;
+                }
+                return DataTypeBinder1.class;
+            }
+        });
+
+
         mRecyclerView.setAdapter(adapter);
 
 
@@ -133,19 +179,15 @@ public class OneToManyFragment extends BaseFragment implements OnRefreshListener
         loadRemoteData();
     }
 
-    private void loadRemoteData(){
-        parser = new TypeDeserializer();
-        List<TypeItem> list = parser.fromJson(JSONDATA);
-
-        items = new Items(items);
-        items.addAll(list);
+    private void loadRemoteData() {
+        for(int i=0 ; i<10 ; i++){
+            items.add(new Data(Data.TYPE_1, "纯文字条目", 0));
+            items.add(new Data(Data.TYPE_2, "", R.drawable.image_practice_repast_1));
+            items.add(new Data(Data.TYPE_3, "左图右文列表条目", R.drawable.image_avatar_1));
+        }
         adapter.setItems(items);
         adapter.notifyDataSetChanged();
     }
 
 
-    @Override
-    public void onItemClick(View itemView, int position) {
-        toPath("/BrowserActivity2");
-    }
 }

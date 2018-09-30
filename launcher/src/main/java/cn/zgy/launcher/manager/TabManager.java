@@ -11,6 +11,7 @@ import cn.zgy.launcher.fragment.TestFragment;
 import cn.zgy.multilist.Loading_NewsFragment;
 import cn.zgy.multilist.NewsFragment;
 import cn.zgy.multilist.OneToManyFragment;
+import cn.zgy.multilist.OneToManyFragment2;
 import cn.zgy.news.HomeFragment;
 import cn.zgy.playerdemo.PlayerListFragment;
 
@@ -54,7 +55,7 @@ public class TabManager {
                 fragment = new JsFragment();
                 break;
             case "discovery":
-                fragment = new Loading_NewsFragment();
+                fragment = new OneToManyFragment2();
                 break;
             default:
                 fragment = new Loading_NewsFragment();
